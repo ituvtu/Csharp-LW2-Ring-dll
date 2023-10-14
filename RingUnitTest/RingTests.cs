@@ -224,5 +224,34 @@ namespace RingUnitTest
 			string result = ring.ToString();
 			Assert.AreEqual(expected, result);
 		}
+		[TestMethod]
+		public void TestExplicitConversionFromArrayToRing()
+		{
+			int[] array = { 1, 2, 3, 4, 5 };
+			Ring<int> ring = (Ring<int>)array;
+
+			// Add your assertions to check if the conversion is correct
+			Assert.AreEqual(5, ring.Length);
+			Assert.AreEqual(1, ring[0]);
+			Assert.AreEqual(2, ring[1]);
+			Assert.AreEqual(3, ring[2]);
+			Assert.AreEqual(4, ring[3]);
+			Assert.AreEqual(5, ring[4]);
+		}
+
+		[TestMethod]
+		public void TestImplicitConversionFromRingToArray()
+		{
+			Ring<int> ring = new Ring<int>(new int[] { 1, 2, 3, 4, 5 });
+			int[] array = ring;
+
+			// Add your assertions to check if the conversion is correct
+			Assert.AreEqual(5, array.Length);
+			Assert.AreEqual(1, array[0]);
+			Assert.AreEqual(2, array[1]);
+			Assert.AreEqual(3, array[2]);
+			Assert.AreEqual(4, array[3]);
+			Assert.AreEqual(5, array[4]);
+		}
 	}
 }
