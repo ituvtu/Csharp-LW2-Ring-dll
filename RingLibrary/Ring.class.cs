@@ -121,7 +121,7 @@ namespace RingLibrary
 
 		public void InputFromConsole()
 		{
-			Console.Write("Введите новые элементы через пробел: ");
+			Console.Write("Enter new elements separated by spaces: ");
 			string input = Console.ReadLine();
 			string[] values = input.Split(' ');
 
@@ -146,20 +146,20 @@ namespace RingLibrary
 				}
 				catch (FormatException)
 				{
-					Console.WriteLine($"Ошибка: Неверный формат значения '{valueStr}'. Пропущен.");
-					throw; // Повторное генерирование исключения
+					Console.WriteLine($"Error: Invalid format for value '{valueStr}'. Skipped.");
+					throw; // Re-throw the exception
 				}
 				catch (InvalidCastException)
 				{
-					Console.WriteLine($"Ошибка: Неверный тип данных для значения '{valueStr}'. Пропущен.");
+					Console.WriteLine($"Error: Invalid data type for value '{valueStr}'. Skipped.");
 				}
 				catch (ArgumentNullException)
 				{
-					Console.WriteLine("Ошибка: Значение не может быть пустым. Пропущено.");
+					Console.WriteLine("Error: Value cannot be empty. Skipped.");
 				}
 				catch (System.Exception)
 				{
-					Console.WriteLine($"Ошибка: Не удалось добавить значение '{valueStr}'. Пропущено.");
+					Console.WriteLine($"Error: Failed to add value '{valueStr}'. Skipped.");
 				}
 			}
 		}
@@ -173,7 +173,7 @@ namespace RingLibrary
 			StringBuilder sb = new StringBuilder();
 			if (Length == 0)
 			{
-				sb.Append("Порожньо");
+				sb.Append("Empty");
 			}
 			else
 			{
@@ -248,7 +248,7 @@ namespace RingLibrary
 		public static Ring<T> operator <(Ring<T> ring, T value)
 		{
 			if (value == null)
-				throw new ArgumentNullException(nameof(value), "Значение не может быть пустым.");
+				throw new ArgumentNullException(nameof(value), "Value cannot be empty.");
 
 			Node newNode = new Node(value);
 			if (ring.Length == 0)
@@ -269,7 +269,7 @@ namespace RingLibrary
 		public static Ring<T> operator >(Ring<T> ring, T value)
 		{
 			if (ring.CurrentNode == null)
-				throw new InvalidOperationException("Кільце порожнє");
+				throw new InvalidOperationException("The ring is empty");
 			ring.CurrentNode.Next = ring.CurrentNode.Next.Next;
 			ring.Length--;
 			return ring;
